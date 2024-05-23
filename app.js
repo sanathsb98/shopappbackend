@@ -5,9 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors'
 
 const app = express();
-app.use(cors({
-    origin:['https://ecomwadmin.netlify.app', 'http://localhost:5173']
-}))
+app.use(cors())
 app.use(bodyParser.json())
 app.use("/api", router);
 mongoose.connect("mongodb+srv://itssanathsb:mongodbsecure@cluster0.siik8wa.mongodb.net/EcomWebApp?retryWrites=true&w=majority&appName=Cluster0")
