@@ -2,8 +2,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes/product-routes.js'; // Note the added .js extension
 import bodyParser from 'body-parser';
+import cors from 'cors'
 
 const app = express();
+app.use(cors)
 app.use(bodyParser.json())
 app.use("/api", router);
 mongoose.connect("mongodb+srv://itssanathsb:mongodbsecure@cluster0.siik8wa.mongodb.net/EcomWebApp?retryWrites=true&w=majority&appName=Cluster0")
