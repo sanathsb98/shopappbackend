@@ -26,9 +26,10 @@ export const addProduct = async (req, res, next) => {
 
     let existingProduct;
     try {
-        existingProduct = await Product.findOne({ productName })
+        existingProduct = await Product.findOne({ productName });
         if (existingProduct) {
-            return res.status(400).json({ message: "product already exists" })
+            return res.status(400).json({ message: "product already exists" });
+            console.log("product exists")
         } else {
             const newProduct = new Product({
                 productName,
@@ -38,12 +39,13 @@ export const addProduct = async (req, res, next) => {
                 newLaunch,
                 productImage,
                 productRating,
-            })
-            newProduct.save()
-            return res.status(201).json({ newProduct })
+            });
+            await newProduct.save(); // Await the save operation
+            return res.status(201).json({ newProduct });
+            console.log(newProduct)
         }
-    }
-    catch (err) {
-        console.log(err)
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Error adding product" }); // Added error response
     }
 }
